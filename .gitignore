@@ -1,0 +1,5 @@
+/liblinkedlist.so
+/tests/test
+/src/*.o
+.DS_Store
+*.pem
