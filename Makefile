@@ -19,4 +19,4 @@ clean:
 .ONESHELL:
 test: $(TARGET_LIB)
 	cc -o tests/test -Isrc -L. -llinkedlist tests/test.c
-	DYLD_LIBRARY_PATH=. ./tests/test
+	LD_LIBRARY_PATH=. DYLD_LIBRARY_PATH=. ./tests/test
