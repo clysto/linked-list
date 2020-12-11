@@ -1,6 +1,6 @@
-CC = cc
+CC = gcc
 CFLAGS = -std=c99 -fPIC -pedantic -Wall -g -Isrc
-LDFLAGS= -shared
+LDFLAGS = -shared -Wl,-soname,liblinkedlist.so
 SOURCES = src/linked_list.c
 OBJECTS = $(SOURCES:.c=.o)
 TARGET_LIB = liblinkedlist.so
@@ -17,6 +17,10 @@ clean:
 
 .PHONY: test
 .ONESHELL:
-test: $(TARGET_LIB)
-	cc -o tests/test -Isrc -L. -llinkedlist tests/test.c
+test: $(TARGET_LIB) test_exe
 	LD_LIBRARY_PATH=. DYLD_LIBRARY_PATH=. ./tests/test
+
+
+test_exe:
+	$(CC) -o tests/test -Isrc -L. tests/test.c -llinkedlist
+
